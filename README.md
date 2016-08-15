@@ -14,7 +14,7 @@
 * 这个命令会帮我们创建一个 `.podspec` 的文件, 这是一个非常非常非常重要的文件, 你可以在本地使用文本编辑器打开来进行编辑, 但最好是提交到github上来编辑, 比较方便, 里面有很多CocoaPods帮我们生成的内容, 包括有完整的注释说明, 但大部分是我们不需要的, 直接删掉留下有用的就好 ; 
 
 * 以我的项目为例, 先截个本地代码库结构目录图 :
-* 如图: 你需要再另外创建一个和你的 `.podspec` 文件对应的同名的文件夹来放你的开源库的源代码, 文件夹的存放路径至少是和 `.podspec` 文件同个目录的, 当然你可以放到里面的子目录中去, 就像我的, 但是这样的话 `.podspec` 文件里的 `s.source_files` 路径就要写对了 ;
+* 如图: 你需要再另外创建一个和你的 `.podspec` 文件对应的同名的文件夹用来放你的依赖库的源代码, 文件夹的存放路径至少是和 `.podspec` 文件同个目录的, 当然你可以放到更里面的子目录中去, 就像我的, 但是这样的话 `.podspec` 文件里的 `s.source_files` 路径就要写对了 ;
 
 <img src="IMAGE/截图001.png?v=3&s=100" alt="GitHub" title="本地代码库结构目录图" width="600" height="400"/>
 
@@ -75,7 +75,7 @@ $ pod lib lint
 ```
 * 如无意外, 你将看到如下图这样的结果, 表示验证通过 ;
 
-<img src="IMAGE/截图002.png?v=3&s=100" alt="GitHub" title="验证截图" width="700" height="130"/>
+<img src="IMAGE/截图002.png?v=3&s=100" alt="GitHub" title="验证截图" width="700" height="150"/>
 
 * 如果是 Error 呢? 哈哈O(∩_∩)O哈！我没遇到, 但是会有提示处理错误的信息, 跟着做就好了 ;
 
@@ -96,7 +96,7 @@ $ pod lib lint
  * 如果升级完成(版本大于0.33的请忽略上面的过程), 那么开始注册, 执行如下命令
  ```
  $ pod trunk register  arvinSir.86@gmail.com 'arvin' --description='macbook pro' --verbose
- # 上面的命令是我注册时使用的, 你需要把邮箱和名字以及描述替换成你的, 加上--verbose可以输出详细debug信息, 方便出错时查看
+ # 上面的命令是我注册时使用的, 你需要把邮箱和名字以及描述替换成你的, 加上--verbose可以输出详细的debug信息, 方便出错时查看
  ```
  * 注册后CocoaPods会给你的邮箱发送验证链接, 点击后就注册成功了
  * 完了可以使用如下命令查看自己的注册信息:
@@ -105,7 +105,7 @@ $ pod lib lint
  ```
  * 如下图是我的注册信息
  
- <img src="IMAGE/截图003.png?v=3&s=100" alt="GitHub" title="注册信息截图" width="800" height="130"/>
+ <img src="IMAGE/截图003.png?v=3&s=100" alt="GitHub" title="注册信息截图" width="800" height="150"/>
 
 ### 最后就是将你的`.podspec` 文件提交到CocoaPods的Specs库了
 * 使用如下命令:
@@ -115,8 +115,8 @@ pod trunk push LaunchAnimation.podspec
 ```
 * `pod trunk push` 命令做了如下三个工作:
  * 验证你本地的 `.podspec` 文件, 这个步骤我们前面已经做过 ;
- * 上传你的`.podspec`文件到trunk ;
- * 将你的`.podspec`文件转化成trunk需要的Json文件 .
+ * 上传你的 `.podspec` 文件到trunk ;
+ * 将你的 `.podspec` 文件转化成trunk需要的Json文件 .
 
 * 就像上面官方提供的提交架构图描述的那样, 你在trunk中的操作依然会在CocoaPods/Specs仓库中更新, 以后再做更改时只需要更新版本号然后通过trunk来提交, 不用再向`CocoaPods/Specspull request`并等待审核和Merge了.
 * 使用如下命令来更新你的Pods依赖库就OK啦
@@ -124,7 +124,7 @@ pod trunk push LaunchAnimation.podspec
  $ pod setup
 ```
 * 现在就使用命令 `pod search` 试试吧, 提交成功后马上就能搜索到自己的库了
-* 就像酱紫, O(∩_∩)O哈哈哈~, 大功告成啦! 
+* 就像酱紫, O(∩_∩)O哈哈哈~, 至此大功告成啦! 
 
 <img src="IMAGE/截图004.png?v=3&s=100" alt="GitHub" title="搜索结果截图" width="600" height="130"/>
 
