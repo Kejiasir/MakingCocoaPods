@@ -1,9 +1,9 @@
 # MakingCocoaPods
-* 我想大家做项目都会利用CocoaPods来引用别人的框架吧, 就像的AFN，SDWebImage这些知名的框架, 但是你知道这样的CocoaPods依赖库是怎样制作的吗? 刚好前几天写了点'辣鸡'想共享给大家, 所以呢! 费神找Google要了些资料, 在这记录下制作过程吧, 给有需要的朋友做些参考, 先放个CocoaPods官方的 [Blog链接](http://blog.cocoapods.org/CocoaPods-Trunk/#transition)吧
+* 我想大家做项目都会利用CocoaPods来引用别人的框架吧, 就像的AFN，SDWebImage这些知名的框架, 但是你知道这样的CocoaPods依赖库是怎样制作的吗? 刚好前几天写了点'辣鸡'想共享给大家, 所以呢! 费神找Google要了些资料, 在这记录下制作过程吧, 给有需要的朋友做些参考, 先放个[CocoaPods官方的Blog链接](http://blog.cocoapods.org/CocoaPods-Trunk/#transition)吧
 
 ## 说下步骤吧
 * 首先在Github创建一个Repository不用说了吧
-* 第二 `Clone or download` 你刚创建的Repository到本地
+* 第二 <img src="IMAGE/截图000.png?v=3&s=100" alt="GitHub" title="Clone" width="150" height="30"/> 你刚创建的Repository到本地
 * 第三一般大神的框架都会提供一个Demo给人参考是咋用的吧, 所以我们在Xcode创建一个和仓库同名的工程放在刚Clone在本地的文件夹下
 * 第四, 重要的一步, 打开你的终端, 执行以下命令
 
@@ -67,7 +67,8 @@ $ git push origin [tag name]
 $ pod lib lint 
 ```
 * 如无意外, 你会看到如下图这样的结果, 表示验证通过 
-![]()
+
+<img src="IMAGE/截图002.png?v=3&s=100" alt="GitHub" title="验证截图" width="700" height="130"/>
 
 ## 最终, 顺利进入最后一个阶段, 将`.podspec` 文件提交到CocoaPods的Specs库
 * 听说啊! 在2014年5月20日之前是黑暗的日子, 提交到CocoaPods的Specs库十分麻烦, 最终还要官方人工审核通过才行, 真是淡淡的忧桑!
@@ -86,7 +87,8 @@ $ pod lib lint
  ```
  * 注册后CocoaPods会给你的邮箱发送验证链接, 点击后就注册成功了, 可以使用`pod trunk me`命令查看自己的注册信息:
  * 如下图是我的注册信息
- ![]()
+ 
+ <img src="IMAGE/截图003.png?v=3&s=100" alt="GitHub" title="注册信息截图" width="600" height="130"/>
 
 #### 接下来就是将你的`.podspec` 文件提交到CocoaPods的Specs库了
 * 使用如下命令
@@ -99,7 +101,12 @@ pod trunk push LaunchAnimation.podspec
  * 上传你的.podspec文件到trunk
  * 将你的.podspec文件转化成trunk需要的Json文件 
 * 就像上面官方提供的架构图描述的那样, 你在trunk中的操作依然会在CocoaPods/Specs仓库中更新, 以后再做更改时只需要更新版本号然后通过trunk来提交, 不用向`CocoaPods/Specspull request`并等待审核和merge了.
+* 运行如下命令来更新你的Pods依赖库就OK了
+```
+ $ pod setup
+```
 * 现在使用命令`pod search`试试吧, 提交成功后马上就能搜索到自己的库了
-* 就像酱紫啦, 大功告成! 
-![]()
+* 就像酱紫, 大功告成啦! 
+
+<img src="IMAGE/截图004.png?v=3&s=100" alt="GitHub" title="搜索结果截图" width="600" height="130"/>
 
