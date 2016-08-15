@@ -6,11 +6,12 @@
 * 首先在Github创建一个Repository不用说了吧
 * 第二 `Clone or download` 你刚创建的Repository到本地
 * 第三一般大神的框架都会提供一个Demo给人参考是咋用的吧, 所以我们在Xcode创建一个和仓库同名的工程放在刚Clone在本地的文件夹下
-* 第四, 重要的一步, 打开你的终端, 输入命令 
+* 第四, 重要的一步, 打开你的终端, 执行以下命令
 
  ```
-  pod spec create 你的库的名字
+  $ pod spec create your framework name
+  # your framework name 你的依赖库的名字, 比如 SDWebImage
  ```
- 如图![img]()
+* 最终会为你创建一个 `.podspec` 的文件, 这是一个非常重要的文件
 
 
