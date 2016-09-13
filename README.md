@@ -73,12 +73,54 @@ $ git push origin 0.1.0
 ```
 $ pod lib lint 
 ```
-* 如无意外, 你将看到如下图这样的结果, 表示验证通过 ;
+* 如无意外, 你将看到如下图这样的结果, `-> LaunchAnimation (0.1.0)` 前面的箭头是绿色的, 用来表示验证通过;
 
 <img src="IMAGE/截图002.png?v=3&s=100" alt="GitHub" title="验证截图" width="700" height="150"/>
 
 * 如果是 Error 呢? 哈哈O(∩_∩)O哈！我没遇到, 但是会有提示处理错误的信息, 跟着做就好了 ;
 
+
+## 0914 更新, 终于遇到ERROR了, 记录下
+### 说说导致无法通过验证的主要原因有两个
+* 第一, - ERROR  这是一个致命的❌, 必须解决才能通过 
+* 第二, - WARN   警告⚠️, 提交的时候可以通过命令 `--allow-warnings` 来忽略
+
+
+* 如下图, 这是一个致命的错误❌, 可以看到 `-> YYInfiniteLoopView.podspec` 前面的箭头是红色的, 用来表示ERROR
+<img src="IMAGE/CocoaPods错误信息01.png?v=3&s=100" alt="GitHub" title="CocoaPods错误信息截图01" width="900" height="600"/>
+
+
+* 如下图, 可以看到提示有2个 errors, 6个 warnings, 从而无法通过验证
+<img src="IMAGE/CocoaPods错误信息02.png?v=3&s=100" alt="GitHub" title="CocoaPods错误信息截图02" width="900" height="600"/>
+
+
+* 如下图, 有10个 warnings, 也是不能通过验证的, 但是后面接着提示我们可以使用 `--allow-warnings` 命令来忽略它们, `-> YYInfiniteLoopView (0.1.0)` 前面的箭头是黄色的, 用来表示WARNINGS
+<img src="IMAGE/CocoaPods错误信息03.png?v=3&s=100" alt="GitHub" title="CocoaPods错误信息截图03" width="900" height="600"/>
+
+
+### 下面解决问题的过程及方法
+* 上面第一张图的 ERROR 其实是我一开始在创建了 `.podspec` 文件后在本地用文本工具编辑所导致的, 后来是提交到 `github` 上编辑, 但是最终还是提示错误, 如下图所示的验证失败提示: 
+
+<img src="IMAGE/CocoaPods错误信息04.png?v=3&s=100" alt="GitHub" title="CocoaPods错误信息截图04" width="900" height="600"/>
+
+* 讲真, 这个ERROR搞的我都快绝望了, 各种Google, 找遍Stackoverflow, 甚至向CocoaPods仓库提issue都未能解决, 最后无奈把远程和本地的仓库全部删掉重新创建一遍才通过, 真是蛋疼~~ 
+* 所以这里强烈建议千万不能在本地编辑 `.podspec` 这个文件, 另外步骤最好按照我这篇文章写的步骤一步步来操作, 否则真的不保证能顺利通过, 啊O(∩_∩)O哈哈~~
+
+* 所以, 如果遇到验证有警告时请使用如下命令来提交你的 `.podspec` 文件吧
+
+```
+$ pod trunk push xxxxxxxxxx.podspec --allow-warnings
+# 另外如果你的库有使用到其他的依赖库, 也请.podspec文件中声明, 并使用如下命令提交
+$ pod trunk push xxxxxxxxxx.podspec --allow-warnings --use-libraries
+```
+
+* 最后如下图, `.podspec` 文件验证通过, 并提交到CocoaPods成功, 输出的 Log 信息
+
+<img src="IMAGE/CocoaPods验证成功信息.png?v=3&s=100" alt="GitHub" title="CocoaPods验证成功信息截图" width="900" height="600"/>
+
+
+
+ 
 ## 最终, 顺利进入最后阶段, 将`.podspec` 文件提交到CocoaPods的Specs库
 * 听说啊! 在2014年5月20日之前是黑暗的日子, 提交到CocoaPods的Specs库相当麻烦, 最终还要官方人工审核通过才行, 真是淡淡的忧桑!
 * 如开头所链接的CocoaPods官方博客所说, 现在CocoaPods已不再接受向CocoaPods/Specs的`pull request`, 原因是为了安全考虑, 防止每个人的pod被其他人修改, 于是CocoaPods团队开发了trunk服务, 这样每个人都是其发布的pod的owner, 没有权限的人无法修改, 这样更安全, 也更方便快捷, 省去了之前的人工审核和繁琐流程, 大大提高了效率哦 .
@@ -110,7 +152,7 @@ $ pod lib lint
 ### 最后就是将你的`.podspec` 文件提交到CocoaPods的Specs库了
 * 使用如下命令:
 ```
-pod trunk push LaunchAnimation.podspec
+$ pod trunk push xxxxxxxxxx.podspec
 # 请将 LaunchAnimation 替换成你的依赖库名字
 ```
 * `pod trunk push` 命令做了如下三个工作:
