@@ -11,7 +11,7 @@
   $ pod spec create your framework name
   # your framework name 你的依赖库的名字, 比如 SDWebImage
  ```
-* 这个命令会帮我们创建一个 `.podspec` 的文件, 这是一个非常非常非常重要的文件, 你可以在本地使用文本编辑器打开来进行编辑, 但最好是提交到github上来编辑, 比较方便, 里面有很多CocoaPods帮我们生成的内容, 包括有完整的注释说明, 但大部分是我们不需要的, 直接删掉留下有用的就好 ; 
+* 这个命令会帮我们创建一个 `.podspec` 的文件, 这是一个非常非常非常重要的文件, 你可以在本地使用文本编辑器打开来进行编辑(千万不要在本地编辑, 这是天坑, 可以看下面的更新血泪史), 但最好是提交到github上来编辑, 比较方便, 里面有很多CocoaPods帮我们生成的内容, 包括有完整的注释说明, 但大部分是我们不需要的, 直接删掉留下有用的就好 ;
 
 * 以我的项目为例, 先截个本地代码库结构目录图 :
 * 如图: 你需要再另外创建一个和你的 `.podspec` 文件对应的同名的文件夹用来放你的依赖库的源代码, 文件夹的存放路径至少是和 `.podspec` 文件同个目录的, 当然你可以放到更里面的子目录中去, 就像我的, 但是这样的话 `.podspec` 文件里的 `s.source_files` 路径就要写对了 ;
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT" 
   s.author       = { "Arvin" => "yasir86@126.com" } 
   s.platform     = :ios, "7.0" 
-  s.source       = { :git => "https://github.com/Kejiasir/LaunchAnimation-demo.git", :tag => "0.1.0" }
+  s.source       = { :git => "https://github.com/Kejiasir/LaunchAnimation-demo.git", :tag => s.version }
   s.source_files = "LaunchAnimation-demo/LaunchAnimation-demo/LaunchAnimation/*.{h,m}" 
   s.requires_arc = true 
 end
